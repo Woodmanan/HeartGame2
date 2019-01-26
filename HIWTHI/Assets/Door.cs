@@ -19,17 +19,23 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("Door collided with " + collision.gameObject.name);
         if (collision.gameObject.tag.Equals("Player"))
         {
-            openDoor();
+            openDoor(.35f);
             Invoke("closeDoor", 1.5f);
+        }
+
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            openDoor(.35f);
         }
     }
 
-    private void openDoor()
+    private void openDoor(float f)
     {
         GetComponent<Animator>().SetBool("Open", true);
-        Invoke("toggleCollider", .35f);
+        Invoke("toggleCollider", f);
         open = true;
     }
 
