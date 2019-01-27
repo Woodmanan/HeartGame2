@@ -32,22 +32,27 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void openDoor(float f)
+    public void openDoor(float f)
     {
         GetComponent<Animator>().SetBool("Open", true);
         Invoke("toggleCollider", f);
         open = true;
     }
 
-    private void closeDoor()
+    public void closeDoor()
     {
         GetComponent<Animator>().SetBool("Open", false);
-        Invoke("toggleCollider", .8f);
+        Invoke("colliderOn", .8f);
         open = false;
     }
 
     private void toggleCollider()
     {
         GetComponent<BoxCollider2D>().enabled = !GetComponent<BoxCollider2D>().enabled;
+    }
+
+    private void colliderOn()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 }

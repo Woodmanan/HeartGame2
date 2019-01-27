@@ -114,35 +114,47 @@ public class PlayerController : MonoBehaviour
                 print(new Vector3(dir.x, dir.y, 0));
                 print(transform.position);
             }
+
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Door"))
+            {
+                Vector3 mag = go.transform.position - transform.position;
+                if (mag.magnitude < .5)
+                {
+                    go.GetComponent<Door>().closeDoor();
+                }
+            }
         }
 
         animator.SetFloat("speed", direction.magnitude);
-
-        angle = 0;
-
         if (direction.magnitude != 0)
         {
-            if (direction.x == 0)
+            angle = 0;
+
+            if (direction.magnitude != 0)
             {
-                if (direction.y > 0)
+                if (direction.x == 0)
                 {
-                    angle = 90;
+                    if (direction.y > 0)
+                    {
+                        angle = 90;
+                    }
+                    else
+                    {
+                        angle = 270;
+                    }
                 }
                 else
                 {
-                    angle = 270;
+                    angle = Mathf.Atan(direction.y / direction.x) * 180 / Mathf.PI;
+                    if (direction.x < 0)
+                    {
+                        angle += 180;
+                    }
                 }
-            }
-            else
-            {
-                angle = Mathf.Atan(direction.y / direction.x) * 180 / Mathf.PI;
-                if (direction.x < 0)
-                {
-                    angle += 180;
-                }
-            }
 
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+                print("We are updating angle!");
+                transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
         }
 
         

@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 254169948}
   m_Layer: 0
   m_Name: DoorClosed_0 (1)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 338132098}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: cube
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6765,7 +6765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4ff2e04978794086699ceb15fef72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
 --- !u!61 &896904857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7112,7 +7111,7 @@ GameObject:
   - component: {fileID: 1050960699}
   m_Layer: 0
   m_Name: DoorClosed_0
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8434,7 +8433,7 @@ GameObject:
   - component: {fileID: 1932928044}
   m_Layer: 0
   m_Name: DoorClosed_0 (2)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

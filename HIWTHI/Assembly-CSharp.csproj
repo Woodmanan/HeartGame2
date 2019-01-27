@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DCScript.cs" />
     <Compile Include="Assets\Door.cs" />
     <Compile Include="Assets\exitOnClick.cs" />
     <Compile Include="Assets\Follow.cs" />

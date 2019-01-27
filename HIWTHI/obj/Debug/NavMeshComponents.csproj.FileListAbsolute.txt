@@ -292,4 +292,3 @@ C:\Users\Woodm\Documents\GitHub\HeartGame\HeartGame\HIWTHI\obj\Debug\NavMeshComp
 C:\Users\Woodm\Documents\GitHub\HeartGame\HeartGame\HIWTHI\obj\Debug\NavMeshComponents.csproj.CopyComplete
 C:\Users\Woodm\Documents\GitHub\HeartGame\HeartGame\HIWTHI\obj\Debug\NavMeshComponents.dll
 C:\Users\Woodm\Documents\GitHub\HeartGame\HeartGame\HIWTHI\obj\Debug\NavMeshComponents.pdb
-C:\Users\Woodm\Documents\GitHub\HeartGame\HeartGame\HIWTHI\Temp\bin\Debug\Boo.Lang.dll

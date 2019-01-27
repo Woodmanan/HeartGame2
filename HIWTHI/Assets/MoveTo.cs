@@ -30,6 +30,9 @@ public class MoveTo : MonoBehaviour
             coord = 3;
         }
         des = pos2coord(heart.position);
+
+        print("Des: " + des);
+        print("Coord: " + coord);
         if (coord == 5)
         {
             if (des == 0)
@@ -203,7 +206,7 @@ public class MoveTo : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Vector2 dir = player.GetComponent<PlayerController>().angle2direction(player.GetComponent<PlayerController>().angle);
-            agent.SetDestination(player.transform.position + new Vector3(dir.x * -2, dir.y * -2, transform.position.z));
+            agent.SetDestination(player.transform.position + new Vector3(dir.x * -.5f, dir.y * -.5f, transform.position.z));
         }
     }
 }
