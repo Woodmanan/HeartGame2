@@ -67,6 +67,7 @@
     <Compile Include="Assets\fadeout.cs" />
     <Compile Include="Assets\Follow.cs" />
     <Compile Include="Assets\HeartController.cs" />
+    <Compile Include="Assets\inputSwitch.cs" />
     <Compile Include="Assets\MoveSceneOnClick.cs" />
     <Compile Include="Assets\MoveTo.cs" />
     <Compile Include="Assets\PlayerController.cs" />

@@ -30,7 +30,7 @@ public class HeartController : MonoBehaviour
     public void game_over()
     {
         health--;
-        if (health < 1)
+        if (health == 0)
         {
             print("Died! Loading new scene");
             SceneManager.LoadScene(3);

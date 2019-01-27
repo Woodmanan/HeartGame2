@@ -136,11 +136,11 @@ public class PlayerController : MonoBehaviour
                 direction += new Vector2(0, -1);
             }
 
-            if (transform.position.x > 12)
+            if (transform.position.x > 13)
             {
                 transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
             }
-            else if (transform.position.x < -12)
+            else if (transform.position.x < -13)
             {
                 transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
             }
