@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         animator.enabled = true;
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         spawned = true;
-        health = 0;
+        health = 5;
     }
 
     public void despawn()
@@ -134,6 +134,24 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position += new Vector3(0, -.05f, 0);
                 direction += new Vector2(0, -1);
+            }
+
+            if (transform.position.x > 12)
+            {
+                transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x < -12)
+            {
+                transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
+            }
+
+            if (transform.position.y > 7)
+            {
+                transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
+            }
+            else if (transform.position.y < -7)
+            {
+                transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
             }
 
             if (Input.GetAxis("Attack") > .1)
