@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class Follow : MonoBehaviour
 {
-    public GameObject cube;
+    [SerializeField]
+    private GameObject cube;
 
     public string target = "heart";
     public float currTime = -4.0f;
@@ -26,6 +27,16 @@ public class Follow : MonoBehaviour
         angle = 0;
     }
 
+    void die()
+    {
+        Destroy(this.gameObject);
+    }
+
+    void stopMoving()
+    {
+        Destroy(cube);
+    }
+
     public void getHit()
     {
         print("Enemy has been hit");
@@ -34,8 +45,10 @@ public class Follow : MonoBehaviour
             print("OHNO IVE BEEN HIT");
             //insert a death animation of some kind
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().souls_collected++;
-            Destroy(cube);
-            Destroy(this.gameObject);
+            gameObject.GetComponent<Animator>().SetBool("isDead", true);
+            //gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            Invoke("stopMoving", 0.4f);
+            Invoke("die", 2.5f);
         }
         else
         {
