@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         animator.enabled = true;
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         spawned = true;
+        health = 0;
     }
 
     public void despawn()
