@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
-  isLethal: 0
+  isLethal: 1
   cost: 3
   cooldownTime: 0
 --- !u!1 &6938871504325987832

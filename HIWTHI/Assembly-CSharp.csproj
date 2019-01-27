@@ -73,6 +73,7 @@
     <Compile Include="Assets\PointerMovement.cs" />
     <Compile Include="Assets\RoundControl.cs" />
     <Compile Include="Assets\scrollin.cs" />
+    <Compile Include="Assets\transition.cs" />
     <Compile Include="Assets\TrapControl.cs" />
     <Compile Include="Assets\TrapController.cs" />
     <Compile Include="Assets\TrapSpawner.cs" />

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Follow : MonoBehaviour
 {
     [SerializeField]
-    private GameObject cube;
+    public GameObject cube;
 
     public string target = "heart";
     public float currTime = -4.0f;
@@ -46,9 +46,10 @@ public class Follow : MonoBehaviour
             //insert a death animation of some kind
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().souls_collected++;
             gameObject.GetComponent<Animator>().SetBool("isDead", true);
-            //gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            gameObject.GetComponent<Animator>().enabled = false;
+            gameObject.GetComponent<Animator>().enabled = true;
             Invoke("stopMoving", 0.4f);
-            Invoke("die", 2.5f);
+            Invoke("die", 1.5f);
         }
         else
         {
