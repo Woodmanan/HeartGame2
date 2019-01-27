@@ -19,7 +19,24 @@ public class TrapController : MonoBehaviour
     {
 
     }
+    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("Enemy"))
+        {
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                gameObject.GetComponent<Animator>().SetBool("firing", false);
 
+            }
+            else if (collision.gameObject.tag.Equals("Enemy"))
+            {
+                 gameObject.GetComponent<Animator>().SetBool("firing", true);
+            }
+        }
+    }
+    
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isLethal)
@@ -28,13 +45,17 @@ public class TrapController : MonoBehaviour
             {
                 if (collision.gameObject.tag.Equals("Player"))
                 {
-                    collision.gameObject.GetComponent<PlayerController>().takeDamage(dmg);
+                    collision.gameObject.GetComponent<PlayerController>().getHit(dmg);
+                    gameObject.GetComponent<Animator>().SetBool("firing", true);
+                    
                 }
                 else if (collision.gameObject.tag.Equals("Enemy"))
                 {
                     collision.gameObject.GetComponent<Follow>().getHit();
+                    gameObject.GetComponent<Animator>().SetBool("firing", true);
                 }
             }
         }
+        
     }
 }
