@@ -7,6 +7,7 @@ public class TrapController : MonoBehaviour
     [SerializeField]
     private int dmg;
     public bool isLethal;
+    public int cost;    
     // Start is called before the first frame update
     void Start()
     {

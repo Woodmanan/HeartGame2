@@ -10,7 +10,7 @@ public class Follow : MonoBehaviour
 
     public string target = "heart";
     public float currTime = -4.0f;
-    private float dodge_prob = 0.0f;//0.3f;
+    private float dodge_prob = 1.0f;//0.3f;
     public bool panicked = false;
     public float angle;
     Vector3 destination;
@@ -34,28 +34,34 @@ public class Follow : MonoBehaviour
         {
             print("OHNO IVE BEEN HIT");
             //insert a death animation of some kind
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().souls_collected++;
             Destroy(cube);
             Destroy(this.gameObject);
         }
         else
         {
             panicked = true;
-            cube.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(new Vector3(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).x * -1.5f, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).y * -1.5f, cube.transform.position.z));
+            cube.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(new Vector3(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).x * 1.5f, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).y * 1.5f, cube.transform.position.z));
             cube.GetComponent<MoveTo>().setTarget("heart");
+            cube.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 3.6f;
+            dodge_prob = 0.5f;
         }
 
     }
 
     public void interact()
     {
-        if (cube.GetComponent<MoveTo>().target == "door" || cube.GetComponent<MoveTo>().target == "enter") 
+        if (!panicked)
         {
-            cube.GetComponent<MoveTo>().setTarget("exit");
-            cube.GetComponent<MoveTo>().startTime();
-        }
-        else if (cube.GetComponent<MoveTo>().target == "heart")
-        {
-            cube.GetComponent<MoveTo>().setTarget("player");
+            if (cube.GetComponent<MoveTo>().target == "door" || cube.GetComponent<MoveTo>().target == "enter")
+            {
+                cube.GetComponent<MoveTo>().setTarget("exit");
+                cube.GetComponent<MoveTo>().startTime();
+            }
+            else if (cube.GetComponent<MoveTo>().target == "heart")
+            {
+                cube.GetComponent<MoveTo>().setTarget("player");
+            }
         }
     }
 

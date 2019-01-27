@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;
 
     public float angle = 0;
+    public int souls_collected;
 
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        souls_collected += 5;
     }
 
     //I probably shouldnt have hard coded this but if it works, it works
@@ -106,11 +108,7 @@ public class PlayerController : MonoBehaviour
                     }
                  //transform.rotation.eulerangles.z
                 }
-                if (nearestEnemy != null)
-                {
-                    nearestEnemy.GetComponent<Follow>().interact();
-                }
-                
+                nearestEnemy.GetComponent<Follow>().interact();
             }
             else
             {
@@ -161,25 +159,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (transform.position.x > 11)
-        {
-            transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.x < -11)
-        {
-            transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
-        }
-
-        if (transform.position.y > 11)
-        {
-            transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
-        }
-        else if (transform.position.y < -11)
-        {
-            transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
-        }
-
-
+        
 
 
     }

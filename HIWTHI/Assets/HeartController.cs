@@ -18,9 +18,15 @@ public class HeartController : MonoBehaviour
         
     }
 
+    public void teleport()
+    {
+        Vector3[] valid_locations = new Vector3[3] {new Vector3(0, 0, 0), new Vector3(3.66f, 3.66f, 0), new Vector3(-4.25f, -4.25f, 0)};
+        transform.position = valid_locations[Random.Range(0, 3)];
+    }
+
     public void game_over()
     {
-        print("Game over, bitches");
+        print("GAME 0VER");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

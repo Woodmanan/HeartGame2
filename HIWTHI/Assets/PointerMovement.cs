@@ -47,7 +47,13 @@ public class PointerMovement : MonoBehaviour
     void PlaceTrap()
     {
         selected = (GameObject)choices[choice];
-        GameObject newTrap = (GameObject)Instantiate(selected, transform.position, transform.rotation);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player.GetComponent<PlayerController>().souls_collected >= selected.GetComponent<TrapController>().cost)
+        {
+            player.GetComponent<PlayerController>().souls_collected -= selected.GetComponent<TrapController>().cost;
+            GameObject newTrap = (GameObject)Instantiate(selected, transform.position, transform.rotation);
+        }
+        
     }
 
     // Update is called once per frame
