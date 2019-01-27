@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547661305584191098}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -8.5735235, y: -9.251747, z: 0.12293411}
+  m_LocalPosition: {x: -8.5735235, y: -4.591747, z: 0.12293411}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1547661304396654016}
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 1547661304396653882}
+  alive: 0
   target: heart
   currTime: -4
   panicked: 0

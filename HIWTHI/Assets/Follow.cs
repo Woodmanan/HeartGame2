@@ -7,6 +7,7 @@ public class Follow : MonoBehaviour
 {
     [SerializeField]
     public GameObject cube;
+    public bool alive;
 
     public string target = "heart";
     public float currTime = -4.0f;
@@ -17,6 +18,7 @@ public class Follow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        alive = true;
         if (transform.position.x < 0)
         {
             destination = new Vector3(-6.37f, -0.3f, transform.position.z);
@@ -44,7 +46,11 @@ public class Follow : MonoBehaviour
         {
             print("OHNO IVE BEEN HIT");
             //insert a death animation of some kind
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().souls_collected++;
+            if (alive)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().souls_collected++;
+                alive = false;
+            }
             gameObject.GetComponent<Animator>().SetBool("isDead", true);
             gameObject.GetComponent<Animator>().enabled = false;
             gameObject.GetComponent<Animator>().enabled = true;
@@ -87,6 +93,8 @@ public class Follow : MonoBehaviour
         {
             target = "wait what";
             heart.GetComponent<HeartController>().game_over();
+            Destroy(cube);
+            Destroy(this.gameObject);
         }
         //print("Current target for " + gameObject.name + " is " + target);
         if (target == "heart"){

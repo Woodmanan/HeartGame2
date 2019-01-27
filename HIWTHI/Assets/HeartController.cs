@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeartController : MonoBehaviour
 {
 
     int count;
+    int health;
     // Start is called before the first frame update
     void Start()
     {
         GetComponentInChildren<ParticleSystem>().Play();
+        health = 5;
     }
 
     // Update is called once per frame
@@ -26,7 +29,12 @@ public class HeartController : MonoBehaviour
 
     public void game_over()
     {
-        print("GAME 0VER");
+        health--;
+        if (health < 1)
+        {
+            print("Died! Loading new scene");
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
