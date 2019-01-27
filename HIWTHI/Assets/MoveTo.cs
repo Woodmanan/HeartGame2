@@ -117,8 +117,7 @@ public class MoveTo : MonoBehaviour
             if (agent.remainingDistance <= 0.1)
             {
                 //Face the door
-                owner.transform.rotation = Quaternion.Euler(owner.transform.position * -1f);
-
+                
                 target = "enter";
                 currTime = Time.time;
                 agent.isStopped = true;
@@ -152,6 +151,36 @@ public class MoveTo : MonoBehaviour
         else if (target == "enter")
         {
             owner.GetComponent<Animator>().SetBool("Knocking", true);
+            //Face da door!
+            Vector3 direction = transform.position * -1;
+            if (direction.magnitude != 0)
+            {
+                float angle = 0;
+                if (direction.x == 0)
+                {
+                    if (direction.y > 0)
+                    {
+                        angle = 90;
+                    }
+                    else
+                    {
+                        angle = 270;
+                    }
+                }
+                else
+                {
+                    angle = Mathf.Atan(direction.y / direction.x) * 180 / Mathf.PI;
+                    if (direction.x < 0)
+                    {
+                        angle += 180;
+                    }
+                }
+                owner.transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+
+
+
+
             if (Time.time > currTime + 3.5)
             {
                 
