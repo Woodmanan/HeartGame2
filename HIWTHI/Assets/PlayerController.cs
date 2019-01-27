@@ -10,11 +10,55 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 direction;
 
+    public float angle = 0;
+
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    //I probably shouldnt have hard coded this but if it works, it works
+    public Vector2 angle2direction(float ang)
+    {
+        if (ang == 0)
+        {
+            return (new Vector2(1, 0));
+        }
+        else if (ang == 45)
+        {
+            return (new Vector2(1, 1));
+        }
+        else if (ang == 90)
+        {
+            return (new Vector2(0, 1));
+        }
+        else if (ang == 135)
+        {
+            return (new Vector2(-1, 1));
+        }
+        else if (ang == 180)
+        {
+            return (new Vector2(-1, 0));
+        }
+        else if (ang == 225)
+        {
+            return (new Vector2(-1, -1));
+        }
+        else if (ang == 270)
+        {
+            return (new Vector2(0, -1));
+        }
+        else if (ang == 315)
+        {
+            return (new Vector2(1, -1));
+        }
+        else if (ang == 360)
+        {
+            return (new Vector2(1, 0));
+        }
+        return (new Vector2(0, 0));
     }
 
     // Update is called once per frame
@@ -42,10 +86,39 @@ public class PlayerController : MonoBehaviour
             direction += new Vector2(0, -1);
         }
 
+        if (Input.GetAxis("Interact") > .1)
+        {
+            /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                
+                    //transform.rotation.eulerangles.z
+            }*/
+            Vector2 dir = angle2direction(angle);
+            if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 2.0f))
+            {
+                GameObject nearestEnemy = null;
+                float min_dist = Mathf.Pow(2, 28);
+                foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    if (Vector3.Distance(transform.position, enemy.transform.position) < min_dist){
+                        min_dist = Vector3.Distance(transform.position, enemy.transform.position);
+                        nearestEnemy = enemy;
+                    }
+                 //transform.rotation.eulerangles.z
+                }
+                nearestEnemy.GetComponent<Follow>().interact();
+            }
+            else
+            {
+
+                print(new Vector3(dir.x, dir.y, 0));
+                print(transform.position);
+            }
+        }
 
         animator.SetFloat("speed", direction.magnitude);
 
-        float angle = 0;
+        angle = 0;
 
         if (direction.magnitude != 0)
         {
