@@ -63,6 +63,8 @@
     <Compile Include="Assets\DCScript.cs" />
     <Compile Include="Assets\Door.cs" />
     <Compile Include="Assets\exitOnClick.cs" />
+    <Compile Include="Assets\fadein.cs" />
+    <Compile Include="Assets\fadeout.cs" />
     <Compile Include="Assets\Follow.cs" />
     <Compile Include="Assets\HeartController.cs" />
     <Compile Include="Assets\MoveSceneOnClick.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\PointerMovement.cs" />
     <Compile Include="Assets\RoundControl.cs" />
+    <Compile Include="Assets\scrollin.cs" />
     <Compile Include="Assets\TrapControl.cs" />
     <Compile Include="Assets\TrapController.cs" />
     <Compile Include="Assets\TrapSpawner.cs" />

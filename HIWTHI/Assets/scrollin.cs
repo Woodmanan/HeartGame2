@@ -41,7 +41,12 @@ public class scrollin : MonoBehaviour
         }
         if (Time.time - curr > 1 && count >= message.ToCharArray().Length)
         {
-            //add scene transition
+            Invoke("moveOn", 3.0f);
         }
+    }
+
+    private void moveOn()
+    {
+        SceneManager.LoadScene(2);
     }
 }
