@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1547661304396653882}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1547661305584191103}
   m_RootOrder: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   condition3: 0
   target: door
   currTime: -4
+  owner: {fileID: 0}
 --- !u!114 &1547661304396654019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +268,8 @@ MonoBehaviour:
   cube: {fileID: 1547661304396653882}
   target: heart
   currTime: -4
+  panicked: 0
+  angle: 0
 --- !u!61 &1547661305584190977
 BoxCollider2D:
   m_ObjectHideFlags: 0

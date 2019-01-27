@@ -6715,13 +6715,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 21300000, guid: 2cc1d35add33a4844ac58fd0ceb05e51, type: 3}
-  - {fileID: 21300000, guid: 2a3136fff68cd455085eb8a8180b5754, type: 3}
+  - {fileID: 21300000, guid: 73a0fcbf0f66aad47a026f037b1284d4, type: 3}
   - {fileID: 21300000, guid: e8608f3d61eefa84391d79f53d680726, type: 3}
   defaultSprite: {fileID: 0}
   Folder: 
   choices:
   - {fileID: 834386945808536203, guid: b488e5930ecfd4fdbb0e4c8907d788a7, type: 3}
-  - {fileID: 2739333982523016309, guid: 6c88bca6153af4cf08c09b5cae35bc40, type: 3}
+  - {fileID: 7804432259696287826, guid: 6c88bca6153af4cf08c09b5cae35bc40, type: 3}
   - {fileID: 5309556965921491243, guid: 2a2535999acce47b9ae392f130b0dae4, type: 3}
   choice: 0
   selected: {fileID: 0}
@@ -7730,9 +7730,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1a9e66fa6479e914d86b0921455c2085, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 986ceb9456090c9418b9a43dabe5c59a, type: 2}
 --- !u!1 &1226899774
 GameObject:
   m_ObjectHideFlags: 0

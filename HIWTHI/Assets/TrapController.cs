@@ -86,7 +86,7 @@ public class TrapController : MonoBehaviour
     private void stopFiringAssholes()
     {
         print("Trap should have turned off it's animation");
-        GetComponent<Animator>().SetBool("Firing", false);
+        GetComponent<Animator>().SetBool("firing", false);
         print("Trap just turned off it's animation");
     }
 }

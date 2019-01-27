@@ -88,6 +88,21 @@ public class PlayerController : MonoBehaviour
             direction += new Vector2(0, -1);
         }
 
+        //Stabby Boi
+        if (Input.GetAxis("Attack") > .1)
+        {
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                
+                Vector3 pos = go.transform.position - transform.position;
+                print("An enemy is " + pos.magnitude + " away from us!");
+                if (pos.magnitude < 1)
+                {
+                    go.GetComponent<Follow>().getHit();
+                }
+            }
+        }
+
         if (Input.GetAxis("Interact") > .1)
         {
             /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
