@@ -7411,20 +7411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783ba23e4edd4b1dbbec106718afefd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 2cc1d35add33a4844ac58fd0ceb05e51, type: 3}
-  - {fileID: 21300000, guid: 2a3136fff68cd455085eb8a8180b5754, type: 3}
-  - {fileID: 21300000, guid: 0c006aec798d94da3912b851a63b821f, type: 3}
-  defaultSprite: {fileID: 0}
-  Folder: 
-  choices:
-  - {fileID: 834386945808536203, guid: b488e5930ecfd4fdbb0e4c8907d788a7, type: 3}
-  - {fileID: 2739333982523016309, guid: 6c88bca6153af4cf08c09b5cae35bc40, type: 3}
-  - {fileID: 5309556965921491243, guid: 2a2535999acce47b9ae392f130b0dae4, type: 3}
-  choice: 0
-  selected: {fileID: 0}
-  selectedSprite: {fileID: 0}
-  player: {fileID: 1545169290}
 --- !u!1 &1392500539
 GameObject:
   m_ObjectHideFlags: 0

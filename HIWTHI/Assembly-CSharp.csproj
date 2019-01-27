@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CouchTrap.cs" />
     <Compile Include="Assets\Door.cs" />
     <Compile Include="Assets\exitOnClick.cs" />
     <Compile Include="Assets\Follow.cs" />
@@ -68,6 +67,10 @@
     <Compile Include="Assets\MoveSceneOnClick.cs" />
     <Compile Include="Assets\MoveTo.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\PointerMovement.cs" />
+    <Compile Include="Assets\TrapControl.cs" />
+    <Compile Include="Assets\TrapController.cs" />
+    <Compile Include="Assets\TrapSpawner.cs" />
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>C:/Users/Woodm/Documents/GitHub/HeartGame/HeartGame/HIWTHI/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
