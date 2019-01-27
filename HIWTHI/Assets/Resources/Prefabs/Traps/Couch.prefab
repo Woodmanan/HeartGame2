@@ -67,9 +67,9 @@ GameObject:
   m_Component:
   - component: {fileID: 834386945808536199}
   - component: {fileID: 834386945808536198}
-  - component: {fileID: 834386945808536197}
-  - component: {fileID: 834386945808536196}
   - component: {fileID: 573032380957234367}
+  - component: {fileID: 834386945808536197}
+  - component: {fileID: 5599634545012309184}
   m_Layer: 0
   m_Name: Couch
   m_TagString: Trap
@@ -129,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2cc1d35add33a4844ac58fd0ceb05e51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a346e855d7e28440bf4ab3d266fb125, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,6 +140,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &573032380957234367
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834386945808536203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17c6b54433c6e7749a9e6c6000b317ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &834386945808536197
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 10}
+    oldSize: {x: 20.000002, y: 10.000001}
     newSize: {x: 3, y: 6.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -166,7 +185,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 10}
   m_EdgeRadius: 0
---- !u!114 &834386945808536196
+--- !u!114 &5599634545012309184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,26 +194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 834386945808536203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff2e04978794086699ceb15fef72, type: 3}
+  m_Script: {fileID: 11500000, guid: a95cbc579a48bbf4684bc3826e215fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
---- !u!95 &573032380957234367
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834386945808536203}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d94e57f2bb85b4be59ea3d1c949e6003, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  isLethal: 1
+  cost: 0
+  cooldownTime: 2

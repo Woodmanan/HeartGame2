@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2231243262129535641}
   - component: {fileID: 7891956500007430869}
   - component: {fileID: 4334686149960053049}
-  - component: {fileID: 1625515959969382305}
-  - component: {fileID: 1838043327647677686}
   - component: {fileID: 7315125357351556219}
+  - component: {fileID: 5049548946960472488}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -54,7 +53,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 2.46, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -99,43 +98,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dce9adf1318844fd98b5fa191a12c94b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8608f3d61eefa84391d79f53d680726, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.46, y: 2.56}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1625515959969382305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5309556965921491243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff2e04978794086699ceb15fef72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 1
---- !u!114 &1838043327647677686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5309556965921491243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c4ff2e04978794086699ceb15fef72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 0
 --- !u!95 &7315125357351556219
 Animator:
   serializedVersion: 3
@@ -155,6 +128,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5049548946960472488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309556965921491243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95cbc579a48bbf4684bc3826e215fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0
+  isLethal: 0
+  cost: 0
+  cooldownTime: 0
 --- !u!1 &6938871504325987832
 GameObject:
   m_ObjectHideFlags: 0

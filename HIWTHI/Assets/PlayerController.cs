@@ -108,7 +108,10 @@ public class PlayerController : MonoBehaviour
                     }
                  //transform.rotation.eulerangles.z
                 }
-                nearestEnemy.GetComponent<Follow>().interact();
+                if (nearestEnemy != null)
+                {
+                    nearestEnemy.GetComponent<Follow>().interact();
+                }
             }
             else
             {
