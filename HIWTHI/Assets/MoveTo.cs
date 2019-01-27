@@ -271,5 +271,13 @@ public class MoveTo : MonoBehaviour
                 target = "exit";
             }
         }
+        else if (target == "delete")
+        {
+            if (Mathf.Abs(transform.position.x) > 9.2)
+            {
+                Destroy(owner);
+                Destroy(this);
+            }
+        }
     }
 }
