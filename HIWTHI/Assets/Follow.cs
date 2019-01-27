@@ -10,6 +10,9 @@ public class Follow : MonoBehaviour
 
     public string target = "heart";
     public float currTime = -4.0f;
+    private float dodge_prob = 0.0f;//0.3f;
+    public bool panicked = false;
+    public float angle;
     Vector3 destination;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,26 @@ public class Follow : MonoBehaviour
         else {
             destination = new Vector3(5.73f, -0.3f, transform.position.z);
         }
+        angle = 0;
+    }
+
+    public void getHit()
+    {
+        print("Enemy has been hit");
+        if (Random.Range(0.0f, 100.0f) / 100.0f <= dodge_prob)
+        {
+            print("OHNO IVE BEEN HIT");
+            //insert a death animation of some kind
+            Destroy(cube);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            panicked = true;
+            cube.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(new Vector3(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).x * -1.5f, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().angle2direction(angle).y * -1.5f, cube.transform.position.z));
+            cube.GetComponent<MoveTo>().setTarget("heart");
+        }
+
     }
 
     public void interact()
@@ -39,6 +62,13 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        GameObject heart = GameObject.FindGameObjectWithTag("Heart");
+        if (Vector3.Distance(transform.position, heart.transform.position) < 1)
+        {
+            target = "wait what";
+            heart.GetComponent<HeartController>().game_over();
+        }
         //print("Current target for " + gameObject.name + " is " + target);
         if (target == "heart"){
 
@@ -50,7 +80,7 @@ public class Follow : MonoBehaviour
 
             if (direction.magnitude != 0)
             {
-                float angle = 0;
+                angle = 0;
                 if (direction.x == 0)
                 {
                     if (direction.y > 0)

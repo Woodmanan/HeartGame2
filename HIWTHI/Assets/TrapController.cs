@@ -29,6 +29,10 @@ public class TrapController : MonoBehaviour
                 {
                     collision.gameObject.GetComponent<PlayerController>().takeDamage(dmg);
                 }
+                else if (collision.gameObject.tag.Equals("Enemy"))
+                {
+                    collision.gameObject.GetComponent<Follow>().getHit();
+                }
             }
         }
     }

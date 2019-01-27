@@ -22,7 +22,8 @@ public class MoveTo : MonoBehaviour
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
 
-        if (Vector3.Equals(new Vector3(-6.28f, 0, 0), closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)))){
+        if (Vector3.Equals(new Vector3(-6.28f, 0, 0), closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0))))
+        {
             coord = 5;
         }
         else
@@ -110,14 +111,14 @@ public class MoveTo : MonoBehaviour
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (target == "door")
         {
-            
+
             //agent.SetDestination(closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)));
             print(agent.remainingDistance);
 
             if (agent.remainingDistance <= 0.1)
             {
                 //Face the door
-                
+
                 target = "enter";
                 currTime = Time.time;
                 agent.isStopped = true;
@@ -146,7 +147,7 @@ public class MoveTo : MonoBehaviour
                     agent.isStopped = false;
                 }
             }
-            
+
         }
         else if (target == "enter")
         {
@@ -183,7 +184,7 @@ public class MoveTo : MonoBehaviour
 
             if (Time.time > currTime + 3.5)
             {
-                
+
                 agent.isStopped = false;
                 agent.SetDestination(transform.position + new Vector3(-2 * Mathf.Abs(transform.position.x) / transform.position.x, 0, 0));
                 condition3 = true;
@@ -258,22 +259,22 @@ public class MoveTo : MonoBehaviour
             if (Time.time > currTime + 1)
             {
                 agent.SetDestination(closer(transform.position, new Vector3(-9.28f, 0, 0), new Vector3(9.28f, 0, 0)));
-                target = "escape";
+                target = "delete";
             }
-        }        
+        }
         else if (target == "player")
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Vector2 dir = player.GetComponent<PlayerController>().angle2direction(player.GetComponent<PlayerController>().angle);
             agent.SetDestination(player.transform.position + new Vector3(dir.x * -.7f, dir.y * -.7f, transform.position.z));
-             if (Mathf.Abs(transform.position.x) > 6.3)
+            if (Mathf.Abs(transform.position.x) > 6.3)
             {
                 target = "exit";
             }
         }
         else if (target == "delete")
         {
-            if (Mathf.Abs(transform.position.x) > 9.2)
+            if (Mathf.Abs(transform.position.x) > 9.1)
             {
                 Destroy(owner);
                 Destroy(this);
