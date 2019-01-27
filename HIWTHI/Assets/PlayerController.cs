@@ -11,14 +11,30 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;
 
     public float angle = 0;
-    public int souls_collected;
+    public int souls_collected = 0;
+    public string text_extension = "";
+    public bool spawned = false;
+    public bool isWalking = true;
 
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        souls_collected += 5;
+        souls_collected += 15;
+        despawn();
+    }
+
+    public int pos2coord(Vector3 pos)
+    {
+        Vector3 curr_pos = pos;
+        var temp = new Vector2(curr_pos.x, curr_pos.y);
+        //tmp.y should be greater than -6 and less than s
+        int y = (int)temp.y;
+        int row = ((y - 6) * -1) / 4;
+        int x = (int)temp.x;
+        int col = ((x - 6) * -1) / 4;
+        return (row * 3 + col);
     }
 
     //I probably shouldnt have hard coded this but if it works, it works
@@ -63,88 +79,102 @@ public class PlayerController : MonoBehaviour
         return (new Vector2(0, 0));
     }
 
+    public void spawn()
+    {
+        animator.enabled = true;
+        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        spawned = true;
+    }
+
+    public void despawn()
+    {
+
+        transform.position = new Vector3(0, -1, 0);
+        animator.enabled = false;
+        GetComponent<SpriteRenderer>().color = new Color32(69, 69, 69, 69);
+        spawned = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        
+        //numericalScore.GetComponent<UnityEngine.UI.Text>().text = "Souls Collected : " + souls_collected;
+        GameObject counter = GameObject.FindGameObjectWithTag("soulcount");
+        counter.GetComponent<UnityEngine.UI.Text>().text = "Souls : \n" + souls_collected + text_extension;
         direction = new Vector2(0, 0);
-        if (Input.GetAxis("Horizontal") > .1)
+        if (!spawned)
         {
-            transform.position += new Vector3(.05f, 0, 0);
-            direction += new Vector2(1, 0);
-        }
-        if (Input.GetAxis("Horizontal") < -.1)
-        {
-            transform.position += new Vector3(-.05f, 0, 0);
-            direction += new Vector2(-1, 0);
-        }
-        if (Input.GetAxis("Vertical") > .1)
-        {
-            transform.position += new Vector3(0, 0.05f, 0);
-            direction += new Vector2(0, 1);
-        }
-        if (Input.GetAxis("Vertical") < -.1)
-        {
-            transform.position += new Vector3(0, -.05f, 0);
-            direction += new Vector2(0, -1);
-        }
-
-        //Stabby Boi
-        if (Input.GetAxis("Attack") > .1)
-        {
-            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+            if (Input.GetAxis("Interact") > .1 && souls_collected >= 10)
             {
-                
-                Vector3 pos = go.transform.position - transform.position;
-                print("An enemy is " + pos.magnitude + " away from us!");
-                if (pos.magnitude < 1)
-                {
-                    go.GetComponent<Follow>().getHit();
-                }
+                spawn();
+                souls_collected -= 10;
             }
         }
 
-        if (Input.GetAxis("Interact") > .1)
+        else if (isWalking && spawned)
         {
-            /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            if (Input.GetAxis("Horizontal") > .1)
             {
-                
-                    //transform.rotation.eulerangles.z
-            }*/
-            Vector2 dir = angle2direction(angle);
-            if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 2.0f))
+                transform.position += new Vector3(.05f, 0, 0);
+                direction += new Vector2(1, 0);
+            }
+            if (Input.GetAxis("Horizontal") < -.1)
             {
-                GameObject nearestEnemy = null;
-                float min_dist = Mathf.Pow(2, 28);
-                foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                transform.position += new Vector3(-.05f, 0, 0);
+                direction += new Vector2(-1, 0);
+            }
+            if (Input.GetAxis("Vertical") > .1)
+            {
+                transform.position += new Vector3(0, 0.05f, 0);
+                direction += new Vector2(0, 1);
+            }
+            if (Input.GetAxis("Vertical") < -.1)
+            {
+                transform.position += new Vector3(0, -.05f, 0);
+                direction += new Vector2(0, -1);
+            }
+
+            if (Input.GetAxis("Interact") > .1)
+            {
+                /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
                 {
-                    if (Vector3.Distance(transform.position, enemy.transform.position) < min_dist){
-                        min_dist = Vector3.Distance(transform.position, enemy.transform.position);
-                        nearestEnemy = enemy;
+
+                        //transform.rotation.eulerangles.z
+                }*/
+                Vector2 dir = angle2direction(angle);
+                if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 2.0f))
+                {
+                    GameObject nearestEnemy = null;
+                    float min_dist = Mathf.Pow(2, 28);
+                    foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                    {
+                        if (Vector3.Distance(transform.position, enemy.transform.position) < min_dist)
+                        {
+                            min_dist = Vector3.Distance(transform.position, enemy.transform.position);
+                            nearestEnemy = enemy;
+                        }
+                        //transform.rotation.eulerangles.z
                     }
-                 //transform.rotation.eulerangles.z
-                }
-                if (nearestEnemy != null)
-                {
                     nearestEnemy.GetComponent<Follow>().interact();
                 }
-            }
-            else
-            {
-
-                print(new Vector3(dir.x, dir.y, 0));
-                print(transform.position);
-            }
-
-            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Door"))
-            {
-                Vector3 mag = go.transform.position - transform.position;
-                if (mag.magnitude < .5)
+                else
                 {
-                    go.GetComponent<Door>().closeDoor();
+
+                    print(new Vector3(dir.x, dir.y, 0));
+                    print(transform.position);
+                }
+
+                foreach (GameObject go in GameObject.FindGameObjectsWithTag("Door"))
+                {
+                    Vector3 mag = go.transform.position - transform.position;
+                    if (mag.magnitude < .5)
+                    {
+                        go.GetComponent<Door>().closeDoor();
+                    }
                 }
             }
         }
-
         animator.SetFloat("speed", direction.magnitude);
         if (direction.magnitude != 0)
         {
@@ -189,6 +219,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             print("Oh no! The player has died!");
+            despawn();
         }
     }
 }
