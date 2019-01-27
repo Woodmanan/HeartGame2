@@ -68,7 +68,8 @@ GameObject:
   - component: {fileID: 834386945808536199}
   - component: {fileID: 834386945808536198}
   - component: {fileID: 834386945808536197}
-  - component: {fileID: 1029380819604716020}
+  - component: {fileID: 834386945808536196}
+  - component: {fileID: 573032380957234367}
   m_Layer: 0
   m_Name: Couch
   m_TagString: Trap
@@ -156,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.6875, y: 10}
+    oldSize: {x: 5, y: 10}
     newSize: {x: 3, y: 6.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -165,7 +166,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 10}
   m_EdgeRadius: 0
---- !u!114 &1029380819604716020
+--- !u!114 &834386945808536196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +175,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 834386945808536203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95cbc579a48bbf4684bc3826e215fe9, type: 3}
+  m_Script: {fileID: 11500000, guid: e4c4ff2e04978794086699ceb15fef72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 0
+  dmg: 1
+--- !u!95 &573032380957234367
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834386945808536203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d94e57f2bb85b4be59ea3d1c949e6003, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
