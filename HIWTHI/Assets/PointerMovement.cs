@@ -144,6 +144,18 @@ public class PointerMovement : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            foreach (GameObject trap in GameObject.FindGameObjectsWithTag("Trap")){
+                Vector3 pos = trap.transform.position - transform.position;
+                if (pos.magnitude < 0.5f && trap.GetComponent<TrapController>().isLethal)
+                {
+                    Destroy(trap);
+                    player.GetComponent<PlayerController>().souls_collected += 1;
+                }
+            }
+
+        }        
 
         if (Input.GetKeyDown(KeyCode.E))
         {
