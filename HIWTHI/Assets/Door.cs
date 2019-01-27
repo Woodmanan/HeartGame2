@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private bool open;
+    public bool open;
+    public float delay;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class Door : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            openDoor(.35f);
+            Invoke("openInitially", delay);
         }
     }
 
@@ -36,23 +37,31 @@ public class Door : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("Open", true);
         Invoke("toggleCollider", f);
-        open = true;
+        
     }
 
     public void closeDoor()
     {
         GetComponent<Animator>().SetBool("Open", false);
         Invoke("colliderOn", .8f);
-        open = false;
+        
     }
 
     private void toggleCollider()
     {
         GetComponent<BoxCollider2D>().enabled = !GetComponent<BoxCollider2D>().enabled;
+        open = !open;
     }
 
     private void colliderOn()
     {
         GetComponent<BoxCollider2D>().enabled = true;
+        open = false;
+    }
+
+    private void openInitially()
+    {
+        GetComponent<Animator>().SetBool("Open", true);
+        toggleCollider();
     }
 }

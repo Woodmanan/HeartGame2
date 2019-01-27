@@ -45,12 +45,12 @@ public class Follow : MonoBehaviour
             transform.position = cube.transform.position;
             GetComponent<Animator>().SetFloat("Speed", cube.GetComponent<NavMeshAgent>().velocity.magnitude);
 
-            float angle = 0;
 
             Vector3 direction = cube.GetComponent<NavMeshAgent>().velocity;
 
             if (direction.magnitude != 0)
             {
+                float angle = 0;
                 if (direction.x == 0)
                 {
                     if (direction.y > 0)
@@ -70,8 +70,9 @@ public class Follow : MonoBehaviour
                         angle += 180;
                     }
                 }
-            }
                 transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+                
 
         }
     }

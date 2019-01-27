@@ -14,14 +14,14 @@ public class MoveTo : MonoBehaviour
     public bool condition3 = false;
     public string target = "door";
     public float currTime = -4.0f;
-    GameObject owner;
+    public GameObject owner;
     // Start is called before the first frame update
     void Start()
     {
         Transform heart = GameObject.FindGameObjectWithTag("Heart").transform;
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-        owner = transform.parent.gameObject;
+
         if (Vector3.Equals(new Vector3(-6.28f, 0, 0), closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)))){
             coord = 5;
         }
@@ -116,16 +116,45 @@ public class MoveTo : MonoBehaviour
 
             if (agent.remainingDistance <= 0.1)
             {
+                //Face the door
+                owner.transform.rotation = Quaternion.Euler(owner.transform.position * -1f);
+
                 target = "enter";
                 currTime = Time.time;
                 agent.isStopped = true;
+                GameObject closeDoor = null;
+                foreach (GameObject go in GameObject.FindGameObjectsWithTag("Door"))
+                {
+                    if (closeDoor == null)
+                    {
+                        closeDoor = go;
+                    }
+                    else
+                    {
+                        Vector3 current = closeDoor.transform.position - transform.position;
+                        Vector3 test = go.transform.position - transform.position;
+                        if (current.magnitude > test.magnitude)
+                        {
+                            closeDoor = go;
+                        }
+                    }
+                }
+
+                //Closedoor is now the nearest door
+                if (closeDoor.GetComponent<Door>().open)
+                {
+                    target = "heart";
+                    agent.isStopped = false;
+                }
             }
             
         }
         else if (target == "enter")
         {
-            if (Time.time > currTime + 4)
+            owner.GetComponent<Animator>().SetBool("Knocking", true);
+            if (Time.time > currTime + 3.5)
             {
+                
                 agent.isStopped = false;
                 agent.SetDestination(transform.position + new Vector3(-2 * Mathf.Abs(transform.position.x) / transform.position.x, 0, 0));
                 condition3 = true;
@@ -134,6 +163,7 @@ public class MoveTo : MonoBehaviour
         }
         else if (target == "heart")
         {
+            owner.GetComponent<Animator>().SetBool("Knocking", false);
             float currTime = -4.0f;
             if (condition3)
             {
@@ -206,7 +236,7 @@ public class MoveTo : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Vector2 dir = player.GetComponent<PlayerController>().angle2direction(player.GetComponent<PlayerController>().angle);
-            agent.SetDestination(player.transform.position + new Vector3(dir.x * -.5f, dir.y * -.5f, transform.position.z));
+            agent.SetDestination(player.transform.position + new Vector3(dir.x * -.7f, dir.y * -.7f, transform.position.z));
         }
     }
 }
