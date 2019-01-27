@@ -18,6 +18,11 @@ public class HeartController : MonoBehaviour
         
     }
 
+    public void game_over()
+    {
+        print("Game over, bitches");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))

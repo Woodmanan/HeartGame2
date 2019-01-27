@@ -106,7 +106,11 @@ public class PlayerController : MonoBehaviour
                     }
                  //transform.rotation.eulerangles.z
                 }
-                nearestEnemy.GetComponent<Follow>().interact();
+                if (nearestEnemy != null)
+                {
+                    nearestEnemy.GetComponent<Follow>().interact();
+                }
+                
             }
             else
             {
@@ -157,7 +161,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+        if (transform.position.x > 11)
+        {
+            transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x < -11)
+        {
+            transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.y > 11)
+        {
+            transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
+        }
+        else if (transform.position.y < -11)
+        {
+            transform.position = new Vector3(transform.position.x, -transform.position.y, transform.position.z);
+        }
+
+
 
 
     }
