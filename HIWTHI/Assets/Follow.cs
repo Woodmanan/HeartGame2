@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class Follow : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject cube;
+    public GameObject cube;
 
     public string target = "heart";
     public float currTime = -4.0f;

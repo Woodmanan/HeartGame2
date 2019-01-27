@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 0
   isLethal: 0
-  cost: 0
+  cost: 3
   cooldownTime: 0
 --- !u!1 &6938871504325987832
 GameObject:

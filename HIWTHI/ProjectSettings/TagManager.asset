@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Wall
   - Door
+  - soulcount
   layers:
   - Default
   - TransparentFX

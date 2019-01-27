@@ -97,6 +97,7 @@ public class PointerMovement : MonoBehaviour
                 GetComponent<SpriteRenderer>().enabled = false;
                 player.GetComponent<PlayerController>().isWalking = !(player.GetComponent<PlayerController>().isWalking);
                 player.GetComponent<BoxCollider2D>().enabled = !player.GetComponent<BoxCollider2D>().enabled;
+                player.GetComponent<PlayerController>().text_extension = "";
 
             }
 
@@ -129,7 +130,7 @@ public class PointerMovement : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, 90), 90);
         }
 
-        print(positionValid);
+        //print(positionValid);
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (positionValid > 10)

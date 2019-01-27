@@ -22,7 +22,7 @@ public class TrapController : MonoBehaviour
     void Update()
     {
 
-        GetComponent<Animator>().SetBool("Firing", false);
+        //GetComponent<Animator>().SetBool("firing", false);
     }
     
     private void OnTriggerExit2D(Collider2D collision)

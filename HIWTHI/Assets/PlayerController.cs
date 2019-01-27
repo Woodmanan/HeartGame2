@@ -135,6 +135,18 @@ public class PlayerController : MonoBehaviour
                 direction += new Vector2(0, -1);
             }
 
+            if (Input.GetAxis("Attack") > .1)
+            {
+                foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    Vector3 pos = go.transform.position - transform.position;
+                    if (pos.magnitude < 1)
+                    {
+                        go.GetComponent<Follow>().getHit();
+                    }
+                }
+            }
+
             if (Input.GetAxis("Interact") > .1)
             {
                 /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
@@ -142,27 +154,13 @@ public class PlayerController : MonoBehaviour
 
                         //transform.rotation.eulerangles.z
                 }*/
-                Vector2 dir = angle2direction(angle);
-                if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 2.0f))
+                foreach(GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
                 {
-                    GameObject nearestEnemy = null;
-                    float min_dist = Mathf.Pow(2, 28);
-                    foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                    Vector3 mag = go.transform.position - transform.position;
+                    if (mag.magnitude < 1.2)
                     {
-                        if (Vector3.Distance(transform.position, enemy.transform.position) < min_dist)
-                        {
-                            min_dist = Vector3.Distance(transform.position, enemy.transform.position);
-                            nearestEnemy = enemy;
-                        }
-                        //transform.rotation.eulerangles.z
+                        go.GetComponent<Follow>().cube.GetComponent<MoveTo>().target = "player";
                     }
-                    nearestEnemy.GetComponent<Follow>().interact();
-                }
-                else
-                {
-
-                    print(new Vector3(dir.x, dir.y, 0));
-                    print(transform.position);
                 }
 
                 foreach (GameObject go in GameObject.FindGameObjectsWithTag("Door"))

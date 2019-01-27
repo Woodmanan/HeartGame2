@@ -274,7 +274,7 @@ public class MoveTo : MonoBehaviour
         }
         else if (target == "delete")
         {
-            if (Mathf.Abs(transform.position.x) > 9.1)
+            if (Mathf.Abs(transform.position.x) > 8.6)
             {
                 Destroy(owner);
                 Destroy(this);

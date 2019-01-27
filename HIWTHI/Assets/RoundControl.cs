@@ -57,8 +57,9 @@ public class RoundControl : MonoBehaviour
 
     private void spawnRandom()
     {
-        float angle = Random.Range(0, Mathf.PI * 2);
+        Transform childSpot = transform.GetChild(Random.Range(0, transform.childCount));
         GameObject justSpawned = Instantiate(Enemy);
-        justSpawned.transform.position = 10 * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+        Enemy.transform.position = childSpot.position;
+        
     }
 }
