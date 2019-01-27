@@ -266,6 +266,10 @@ public class MoveTo : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             Vector2 dir = player.GetComponent<PlayerController>().angle2direction(player.GetComponent<PlayerController>().angle);
             agent.SetDestination(player.transform.position + new Vector3(dir.x * -.7f, dir.y * -.7f, transform.position.z));
+             if (Mathf.Abs(transform.position.x) > 6.3)
+            {
+                target = "exit";
+            }
         }
     }
 }
