@@ -11,13 +11,24 @@ public class MoveTo : MonoBehaviour
     public int index;
     public bool condition = false;
     public bool condition2 = false;
-    public string target = "heart";
+    public bool condition3 = false;
+    public string target = "door";
+    public float currTime = -4.0f;
+    GameObject owner;
     // Start is called before the first frame update
     void Start()
     {
         Transform heart = GameObject.FindGameObjectWithTag("Heart").transform;
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        coord = pos2coord(transform.position);
+
+        owner = transform.parent.gameObject;
+        if (Vector3.Equals(new Vector3(-6.28f, 0, 0), closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)))){
+            coord = 5;
+        }
+        else
+        {
+            coord = 3;
+        }
         des = pos2coord(heart.position);
         if (coord == 5)
         {
@@ -53,7 +64,12 @@ public class MoveTo : MonoBehaviour
         index = 0;
 
         //var strt = new Vector3((float)((((path[index]) % 3) - 1) * -4), (float)((((path[index]) / 3) - 1) * -4), transform.position.z);
-        agent.SetDestination(transform.position);
+        agent.SetDestination(closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)));
+    }
+
+    public void startTime()
+    {
+        currTime = Time.time;
     }
 
     public void setTarget(string newtarg)
@@ -61,24 +77,70 @@ public class MoveTo : MonoBehaviour
         target = newtarg;
     }
 
-    int pos2coord(Vector3 pos) {
+    int pos2coord(Vector3 pos)
+    {
         Vector3 curr_pos = pos;
         var temp = new Vector2(curr_pos.x, curr_pos.y);
         //tmp.y should be greater than -6 and less than s
-        int y = (int) temp.y;
+        int y = (int)temp.y;
         int row = ((y - 6) * -1) / 4;
-        int x = (int) temp.x;
+        int x = (int)temp.x;
         int col = ((x - 6) * -1) / 4;
-        return(row * 3 + col);
+        return (row * 3 + col);
     }
+
+    Vector3 closer(Vector3 source, Vector3 p1, Vector3 p2)
+    {
+        if (Vector3.Distance(source, p1) < Vector3.Distance(source, p2))
+        {
+            return p1;
+        }
+        else
+        {
+            return p2;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        if (target == "heart")
+        if (target == "door")
+        {
+            
+            //agent.SetDestination(closer(transform.position, new Vector3(-6.28f, 0, 0), new Vector3(6.28f, 0, 0)));
+            print(agent.remainingDistance);
+
+            if (agent.remainingDistance <= 0.1)
+            {
+                target = "enter";
+                currTime = Time.time;
+                agent.isStopped = true;
+            }
+            
+        }
+        else if (target == "enter")
+        {
+            if (Time.time > currTime + 4)
+            {
+                agent.isStopped = false;
+                agent.SetDestination(transform.position + new Vector3(-2 * Mathf.Abs(transform.position.x) / transform.position.x, 0, 0));
+                condition3 = true;
+                target = "heart";
+            }
+        }
+        else if (target == "heart")
         {
             float currTime = -4.0f;
-            if ((condition || condition2) && agent.remainingDistance <= 0.1)
+            if (condition3)
+            {
+                //print("Hey look at this");
+                //foreach (int x in path) print(x);
+                var strt = new Vector3((float)((((path[index]) % 3) - 1) * -4), (float)((((path[index]) / 3) - 1) * -4), transform.position.z);
+                agent.SetDestination(strt);
+                condition3 = false;
+            }
+            else if ((condition || condition2) && agent.remainingDistance <= 0.1)
             {
                 agent.isStopped = true;
                 condition = false;
@@ -128,6 +190,20 @@ public class MoveTo : MonoBehaviour
                 agent.SetDestination(strt);
                 index++;
             }
+        }
+        else if (target == "exit")
+        {
+            if (Time.time > currTime + 1)
+            {
+                agent.SetDestination(closer(transform.position, new Vector3(-9.28f, 0, 0), new Vector3(9.28f, 0, 0)));
+                target = "escape";
+            }
+        }        
+        else if (target == "player")
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Vector2 dir = player.GetComponent<PlayerController>().angle2direction(player.GetComponent<PlayerController>().angle);
+            agent.SetDestination(player.transform.position + new Vector3(dir.x * -2, dir.y * -2, transform.position.z));
         }
     }
 }
